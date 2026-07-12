@@ -1,0 +1,9 @@
+{
+  "name": "蓝牙调光台灯控制",
+  "short_name": "台灯控制",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#f8fafc",
+  "icons": []
+}
