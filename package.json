@@ -1,0 +1,10 @@
+{
+  "name": "ble-lamp-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "serve": "python -m http.server 8765"
+  }
+}
