@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8fafc" />
+    <title>蓝牙调光台灯控制</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="连接状态">
+        <div>
+          <h1>蓝牙调光台灯</h1>
+          <p id="deviceName">未选择设备</p>
+        </div>
+        <div class="status-pill">
+          <span id="statusDot" class="status-dot"></span>
+          <span id="statusText">未连接</span>
+        </div>
+      </section>
+
+      <p id="supportMessage" class="warning" hidden>
+        当前浏览器不支持 Web Bluetooth。请使用 Android Chrome/Edge 或桌面 Chrome/Edge，并通过 HTTPS 或 localhost 打开。
+      </p>
+
+      <section class="controls-grid">
+        <article class="panel connect-panel">
+          <h2>连接</h2>
+          <div class="button-row">
+            <button id="connectButton" class="primary">连接台灯</button>
+            <button id="disconnectButton">断开</button>
+          </div>
+          <button id="simulationButton" class="ghost">进入模拟模式</button>
+          <p class="hint">搜索名称前缀为 <strong>BT-Lamp</strong> 的 BLE 设备。</p>
+        </article>
+
+        <article class="panel power-panel">
+          <h2>开关</h2>
+          <label class="switch">
+            <input id="powerSwitch" type="checkbox" disabled />
+            <span></span>
+          </label>
+          <p class="hint">0% 亮度会直接关闭 EN_LED。</p>
+        </article>
+
+        <article class="panel dim-panel">
+          <div class="panel-heading">
+            <h2>亮度</h2>
+            <strong id="brightnessValue">50%</strong>
+          </div>
+          <input id="brightnessSlider" type="range" min="0" max="100" step="1" value="50" disabled />
+          <div class="dim-meta">
+            <span>暗</span>
+            <span>VDIM PWM 高电平约 <strong id="pwmDuty">64%</strong></span>
+            <span>亮</span>
+          </div>
+        </article>
+
+        <article class="panel delay-panel">
+          <h2>延时关机</h2>
+          <div class="delay-row">
+            <input id="delayMinutes" type="number" min="0" max="999" step="1" value="0" disabled />
+            <span>分钟</span>
+            <button id="delaySendButton" disabled>设置</button>
+          </div>
+          <p class="hint">发送 D000 表示取消延时。</p>
+        </article>
+
+        <article class="panel log-panel">
+          <h2>通信记录</h2>
+          <ol id="commandLog" aria-live="polite"></ol>
+        </article>
+      </section>
+    </main>
+    <script type="module" src="./src/app.mjs"></script>
+  </body>
+</html>
